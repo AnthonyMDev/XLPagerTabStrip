@@ -1,6 +1,7 @@
 Pod::Spec.new do |s|
   s.name     = 'XLPagerTabStrip-AnthonyMDev'
-  s.version  = '1.0.0'
+  s.module_name = 'XLPagerTapStrip'
+  s.version  = '1.0.1'
   s.license  = 'MIT'
   s.summary  = 'PagerTabStrip for iOS and much more!'
   s.description = <<-DESC
