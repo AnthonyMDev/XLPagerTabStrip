@@ -91,7 +91,6 @@
         [self.view addSubview:self.containerView];
     }
     self.containerView.clipsToBounds = YES;
-    self.containerView.bounces = YES;
     [self.containerView setAlwaysBounceHorizontal:YES];
     [self.containerView setAlwaysBounceVertical:NO];
     self.containerView.scrollsToTop = NO;
