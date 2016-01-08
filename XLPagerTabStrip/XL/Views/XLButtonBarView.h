@@ -47,6 +47,7 @@ typedef NS_ENUM(NSUInteger, XLSelectedBarAlignment) {
 @property (nonatomic) CGFloat selectedBarHeight;
 @property (nonatomic) UIImage *selectedBarImage;
 @property (nonatomic) XLSelectedBarAlignment selectedBarAlignment;
+@property (nonatomic) BOOL shouldCellsFillAvailableWidth;
 @property UIFont * labelFont;
 @property NSUInteger leftRightMargin;
 

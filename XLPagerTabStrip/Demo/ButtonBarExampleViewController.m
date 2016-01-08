@@ -34,12 +34,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.buttonBarView.shouldCellsFillAvailableWidth = YES;
     self.isProgressiveIndicator = NO;
     // Do any additional setup after loading the view.
+  
   UIImage *barImage = [UIImage imageNamed:@"selected_bar_arrow"];
   [self.buttonBarView setSelectedBarImage:barImage];
   [self.buttonBarView setSelectedBarHeight:20.0f];
   self.buttonBarView.selectedBar.backgroundColor = [UIColor orangeColor];
+  self.buttonBarView.backgroundColor = [UIColor colorWithRed:7/255.0 green:185/255.0 blue:155/255.0 alpha:1.0];
 }
 
 #pragma mark - XLPagerTabStripViewControllerDataSource
