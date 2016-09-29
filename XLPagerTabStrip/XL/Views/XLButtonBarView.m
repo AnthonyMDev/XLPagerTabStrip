@@ -73,7 +73,6 @@
     }
 }
 
-
 -(void)moveToIndex:(NSUInteger)index animated:(BOOL)animated swipeDirection:(XLPagerTabStripDirection)swipeDirection pagerScroll:(XLPagerScroll)pagerScroll
 {
     self.selectedOptionIndex = index;
@@ -107,7 +106,7 @@
     targetFrame.size.width += (toFrame.size.width - fromFrame.size.width) * progressPercentage;
     targetFrame.origin.x += (toFrame.origin.x - fromFrame.origin.x) * progressPercentage;
     
-    self.selectedBar.frame = CGRectMake(targetFrame.origin.x, self.selectedBar.frame.origin.y, targetFrame.size.width, self.selectedBar.frame.size.height);
+    self.selectedBar.frame = CGRectMake(targetFrame.origin.x, self.frame.size.height - _selectedBarHeight, targetFrame.size.width, self.selectedBar.frame.size.height);
     
     // Next, calculate and set the contentOffset of the UICollectionView
     // (so it scrolls the selectedBar into the appriopriate place given the self.selectedBarAlignment)
@@ -144,13 +143,14 @@
     
     selectedBarFrame.size.width = selectedCellFrame.size.width;
     selectedBarFrame.origin.x = selectedCellFrame.origin.x;
+    selectedBarFrame.origin.y = self.frame.size.height - _selectedBarHeight;
     
     if (animation){
-      [self.selectedBar layoutIfNeeded];
-      [UIView animateWithDuration:0.3 animations:^{
-        [self.selectedBar setFrame:selectedBarFrame];
         [self.selectedBar layoutIfNeeded];
-      }];
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.selectedBar setFrame:selectedBarFrame];
+            [self.selectedBar layoutIfNeeded];
+        }];
     }
     else{
         self.selectedBar.frame = selectedBarFrame;
@@ -192,22 +192,22 @@
     
     switch (self.selectedBarAlignment)
     {
-        case XLSelectedBarAlignmentLeft:
+            case XLSelectedBarAlignmentLeft:
         {
             alignmentOffset = sectionInset.left;
             break;
         }
-        case XLSelectedBarAlignmentRight:
+            case XLSelectedBarAlignmentRight:
         {
             alignmentOffset = self.frame.size.width - sectionInset.right - cellFrame.size.width;
             break;
         }
-        case XLSelectedBarAlignmentCenter:
+            case XLSelectedBarAlignmentCenter:
         {
             alignmentOffset = (self.frame.size.width - cellFrame.size.width) * 0.5;
             break;
         }
-        case XLSelectedBarAlignmentProgressive:
+            case XLSelectedBarAlignmentProgressive:
         {
             CGFloat cellHalfWidth = cellFrame.size.width * 0.5;
             CGFloat leftAlignmentOffest = sectionInset.left + cellHalfWidth;
