@@ -355,7 +355,10 @@
     {
         NSNumber *cellWidthValue = self.cachedCellWidths[indexPath.row];
         CGFloat cellWidth = [cellWidthValue floatValue];
-        return CGSizeMake(cellWidth, collectionView.frame.size.height);
+        
+        UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.buttonBarView.collectionViewLayout;
+        CGFloat cellHeight = collectionView.frame.size.height - flowLayout.sectionInset.top - flowLayout.sectionInset.bottom;
+        return CGSizeMake(cellWidth, cellHeight);
     }
     return CGSizeZero;
 }
